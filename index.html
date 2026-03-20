@@ -7,86 +7,76 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0a0a0a;
-  --surface: #111111;
-  --surface2: #1a1a1a;
-  --border: #222222;
-  --border2: #2d2d2d;
-  --text: #e8e8e8;
-  --muted: #666666;
-  --accent: #00ff88;
-  --accent2: #00cc6a;
-  --danger: #ff4444;
-  --warning: #ffaa00;
-  --info: #4488ff;
-  --mono: 'IBM Plex Mono', monospace;
-  --sans: 'IBM Plex Sans', sans-serif;
+  --bg:#0a0a0a;--surface:#111111;--border:#222222;--border2:#2d2d2d;
+  --text:#e8e8e8;--muted:#666666;--accent:#00ff88;--accent2:#00cc6a;
+  --danger:#ff4444;--warning:#ffaa00;--info:#4488ff;
+  --mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans',sans-serif;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg); color: var(--text); font-family: var(--sans); min-height: 100vh; }
-.header { border-bottom: 1px solid var(--border); padding: 20px 24px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; background: var(--bg); z-index: 10; }
-.logo { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
-.logo-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.8)} }
-.header-sub { font-size: 11px; color: var(--muted); font-family: var(--mono); margin-left: auto; }
-.main { max-width: 680px; margin: 0 auto; padding: 32px 20px 80px; }
-.section { margin-bottom: 28px; }
-.section-label { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 10px; }
-input[type=text],input[type=number],input[type=date],select { width:100%; background:var(--surface); border:1px solid var(--border2); color:var(--text); font-family:var(--mono); font-size:14px; padding:12px 14px; border-radius:6px; outline:none; transition:border-color .15s; appearance:none; }
-input:focus,select:focus { border-color: var(--accent); }
-input::placeholder { color: var(--muted); }
-.row2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-.row3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
-.faixas-header { display:grid; grid-template-columns:110px 1fr 100px 32px; gap:8px; margin-bottom:8px; }
-.faixas-header span { font-family:var(--mono); font-size:10px; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; }
-.faixa-row { display:grid; grid-template-columns:110px 1fr 100px 32px; gap:8px; margin-bottom:8px; align-items:center; }
-.del-btn { width:32px; height:32px; background:transparent; border:1px solid var(--border2); color:var(--muted); cursor:pointer; border-radius:4px; font-size:16px; display:flex; align-items:center; justify-content:center; transition:all .15s; flex-shrink:0; }
-.del-btn:hover { border-color:var(--danger); color:var(--danger); }
-.btn-add { background:transparent; border:1px dashed var(--border2); color:var(--muted); font-family:var(--mono); font-size:12px; padding:8px 14px; border-radius:6px; cursor:pointer; transition:all .15s; margin-top:4px; }
-.btn-add:hover { border-color:var(--accent); color:var(--accent); }
-.btn-fetch { background:transparent; border:1px solid var(--border2); color:var(--muted); font-family:var(--mono); font-size:12px; padding:10px 14px; border-radius:6px; cursor:pointer; transition:all .15s; white-space:nowrap; }
-.btn-fetch:hover { border-color:var(--info); color:var(--info); }
-.btn-analyze { width:100%; background:var(--accent); border:none; color:#000; font-family:var(--mono); font-size:14px; font-weight:600; padding:16px; border-radius:6px; cursor:pointer; letter-spacing:.05em; transition:all .15s; }
-.btn-analyze:hover { background:var(--accent2); }
-.status { font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:8px; min-height:18px; display:flex; align-items:center; gap:8px; }
-.spinner { width:12px; height:12px; border:2px solid var(--border2); border-top-color:var(--accent); border-radius:50%; animation:spin .7s linear infinite; flex-shrink:0; }
-@keyframes spin { to { transform:rotate(360deg); } }
-.divider { border:none; border-top:1px solid var(--border); margin:28px 0; }
-.model-bar { display:flex; align-items:center; gap:10px; margin:6px 0; }
-.model-name { font-family:var(--mono); font-size:11px; color:var(--muted); min-width:65px; }
-.bar-track { flex:1; height:4px; background:var(--border2); border-radius:2px; overflow:hidden; }
-.bar-fill { height:100%; background:var(--accent); border-radius:2px; transition:width .5s; }
-.model-val { font-family:var(--mono); font-size:12px; font-weight:500; color:var(--text); min-width:40px; text-align:right; }
-.agree-box { font-family:var(--mono); font-size:12px; padding:8px 12px; border-radius:4px; margin-top:10px; }
-#resultado { margin-top:32px; }
-.verdict-box { border-radius:8px; padding:20px; margin-bottom:20px; border:1px solid; }
-.verdict-title { font-family:var(--mono); font-size:22px; font-weight:600; margin-bottom:6px; }
-.verdict-sub { font-family:var(--mono); font-size:12px; line-height:1.6; }
-.metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:20px; }
-.metric { background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:12px; }
-.metric-label { font-family:var(--mono); font-size:9px; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; margin-bottom:4px; }
-.metric-val { font-family:var(--mono); font-size:18px; font-weight:600; }
-.result-card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px; margin-bottom:12px; }
-.result-card-title { font-family:var(--mono); font-size:10px; color:var(--muted); letter-spacing:.12em; text-transform:uppercase; margin-bottom:12px; }
-.faixa-result { border:1px solid var(--border2); border-radius:6px; padding:12px 14px; margin-bottom:8px; transition:border-color .2s; }
-.faixa-result.good { border-color:#00ff8844; background:#00ff880a; }
-.faixa-result.bad { border-color:#ff444422; }
-.fr-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:6px; }
-.fr-name { font-family:var(--mono); font-size:14px; font-weight:500; }
-.fr-edge { font-family:var(--mono); font-size:14px; font-weight:600; }
-.fr-details { display:flex; flex-wrap:wrap; gap:12px; font-family:var(--mono); font-size:11px; color:var(--muted); }
-.badge { display:inline-block; padding:2px 7px; border-radius:3px; font-family:var(--mono); font-size:10px; font-weight:600; letter-spacing:.05em; margin-left:8px; vertical-align:middle; }
-.badge-best { background:#00ff8820; color:var(--accent); }
-.badge-pass { background:#ff444420; color:var(--danger); }
-.risk-row { display:flex; align-items:flex-start; gap:10px; padding:8px 0; border-bottom:1px solid var(--border); font-family:var(--mono); font-size:12px; }
-.risk-row:last-child { border:none; }
-.risk-dot { width:6px; height:6px; border-radius:50%; margin-top:4px; flex-shrink:0; }
-.hint { font-family:var(--mono); font-size:11px; color:var(--muted); background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:10px 12px; line-height:1.7; margin-top:8px; }
-.poly-row { display:flex; gap:8px; }
-@media(max-width:480px) {
-  .metrics { grid-template-columns:repeat(2,1fr); }
-  .faixas-header,.faixa-row { grid-template-columns:90px 1fr 85px 32px; }
-  .row3 { grid-template-columns:1fr; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh}
+.header{border-bottom:1px solid var(--border);padding:20px 24px;display:flex;align-items:center;gap:12px;position:sticky;top:0;background:var(--bg);z-index:10}
+.logo{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--accent);letter-spacing:.1em;text-transform:uppercase}
+.logo-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+.header-sub{font-size:11px;color:var(--muted);font-family:var(--mono);margin-left:auto}
+.main{max-width:680px;margin:0 auto;padding:32px 20px 80px}
+.section{margin-bottom:28px}
+.section-label{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:10px}
+input[type=text],input[type=number],input[type=date],select{width:100%;background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:var(--mono);font-size:14px;padding:12px 14px;border-radius:6px;outline:none;transition:border-color .15s;appearance:none}
+input:focus,select:focus{border-color:var(--accent)}
+input::placeholder{color:var(--muted)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.faixas-header{display:grid;grid-template-columns:110px 1fr 100px 32px;gap:8px;margin-bottom:8px}
+.faixas-header span{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.faixa-row{display:grid;grid-template-columns:110px 1fr 100px 32px;gap:8px;margin-bottom:8px;align-items:center}
+.del-btn{width:32px;height:32px;background:transparent;border:1px solid var(--border2);color:var(--muted);cursor:pointer;border-radius:4px;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+.del-btn:hover{border-color:var(--danger);color:var(--danger)}
+.btn-add{background:transparent;border:1px dashed var(--border2);color:var(--muted);font-family:var(--mono);font-size:12px;padding:8px 14px;border-radius:6px;cursor:pointer;transition:all .15s;margin-top:4px}
+.btn-add:hover{border-color:var(--accent);color:var(--accent)}
+.btn-fetch{background:transparent;border:1px solid var(--border2);color:var(--muted);font-family:var(--mono);font-size:12px;padding:10px 14px;border-radius:6px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.btn-fetch:hover{border-color:var(--info);color:var(--info)}
+.btn-analyze{width:100%;background:var(--accent);border:none;color:#000;font-family:var(--mono);font-size:14px;font-weight:600;padding:16px;border-radius:6px;cursor:pointer;letter-spacing:.05em;transition:all .15s;margin-top:8px}
+.btn-analyze:hover{background:var(--accent2)}
+.status{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:8px;min-height:18px;display:flex;align-items:center;gap:8px}
+.spinner{width:12px;height:12px;border:2px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.model-bar{display:flex;align-items:center;gap:10px;margin:6px 0}
+.model-name{font-family:var(--mono);font-size:11px;color:var(--muted);min-width:65px}
+.bar-track{flex:1;height:4px;background:var(--border2);border-radius:2px;overflow:hidden}
+.bar-fill{height:100%;background:var(--accent);border-radius:2px;transition:width .5s}
+.model-val{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--text);min-width:40px;text-align:right}
+.agree-box{font-family:var(--mono);font-size:12px;padding:8px 12px;border-radius:4px;margin-top:10px}
+#resultado{margin-top:32px}
+.verdict-box{border-radius:8px;padding:20px;margin-bottom:20px;border:1px solid}
+.verdict-title{font-family:var(--mono);font-size:22px;font-weight:600;margin-bottom:6px}
+.verdict-sub{font-family:var(--mono);font-size:12px;line-height:1.6}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px}
+.metric{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:12px}
+.metric-label{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.metric-val{font-family:var(--mono);font-size:18px;font-weight:600}
+.result-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:12px}
+.result-card-title{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+.faixa-result{border:1px solid var(--border2);border-radius:6px;padding:12px 14px;margin-bottom:8px}
+.faixa-result.good{border-color:#00ff8844;background:#00ff880a}
+.faixa-result.bad{border-color:#ff444422}
+.fr-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.fr-name{font-family:var(--mono);font-size:14px;font-weight:500}
+.fr-edge{font-family:var(--mono);font-size:14px;font-weight:600}
+.fr-details{display:flex;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.badge{display:inline-block;padding:2px 7px;border-radius:3px;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.05em;margin-left:8px;vertical-align:middle}
+.badge-best{background:#00ff8820;color:var(--accent)}
+.badge-pass{background:#ff444420;color:var(--danger)}
+.risk-row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:12px}
+.risk-row:last-child{border:none}
+.risk-dot{width:6px;height:6px;border-radius:50%;margin-top:4px;flex-shrink:0}
+.hint{font-family:var(--mono);font-size:11px;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:10px 12px;line-height:1.7;margin-top:8px}
+.poly-row{display:flex;gap:8px}
+.tag-preview{display:inline-block;background:var(--surface);border:1px solid var(--border2);border-radius:4px;padding:3px 8px;font-family:var(--mono);font-size:11px;color:var(--muted);margin:3px 3px 3px 0}
+@media(max-width:480px){
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .faixas-header,.faixa-row{grid-template-columns:90px 1fr 85px 32px}
+  .row3{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -102,10 +92,11 @@ input::placeholder { color: var(--muted); }
   <div class="section">
     <div class="section-label">Link do mercado Polymarket</div>
     <div class="poly-row">
-      <input type="text" id="poly-url" placeholder="https://polymarket.com/event/...">
+      <input type="text" id="poly-url" placeholder="https://polymarket.com/event/highest-temperature-in-...">
       <button class="btn-fetch" onclick="fetchPolymarket()">Buscar faixas</button>
     </div>
     <div class="status" id="poly-status"></div>
+    <div id="poly-preview" style="margin-top:10px;display:none"></div>
   </div>
 
   <!-- CIDADE -->
@@ -165,7 +156,7 @@ input::placeholder { color: var(--muted); }
   <!-- FAIXAS -->
   <div class="section">
     <div class="section-label">Faixas do mercado — preços No</div>
-    <div class="hint">Preenchido automaticamente ao buscar o link do Polymarket. Ou adicione manualmente.</div>
+    <div class="hint">Preenchido automaticamente ao buscar o link. Ou adicione manualmente — use o preço do "No" de cada faixa no Polymarket.</div>
     <div style="margin-top:12px">
       <div class="faixas-header">
         <span>Temp (°C)</span><span>Descrição</span><span>Preço No</span><span></span>
@@ -179,7 +170,7 @@ input::placeholder { color: var(--muted); }
   <div class="section">
     <div class="section-label">Estação de resolução</div>
     <input type="text" id="estacao" placeholder="Ex: SBGR (Guarulhos), EGLC (London City), RKSI (Incheon)">
-    <div class="hint">Preenchido automaticamente ao buscar o link. Verifique nas Rules do mercado.</div>
+    <div class="hint">Preenchido automaticamente ao buscar o link. Sempre verifique nas Rules do mercado.</div>
   </div>
 
   <button class="btn-analyze" onclick="analisar()">Analisar entrada</button>
@@ -228,71 +219,74 @@ function getFaixas() {
   return res;
 }
 
-// FETCH POLYMARKET via proxy
+// FETCH POLYMARKET via proxy → API oficial gamma-api
 async function fetchPolymarket() {
   const url = document.getElementById('poly-url').value.trim();
   if (!url.includes('polymarket.com')) { setStatus('poly-status', 'Cole um link válido do Polymarket.'); return; }
-  setStatus('poly-status', 'Buscando faixas e preços...', true);
+
+  setStatus('poly-status', 'Buscando dados do mercado...', true);
+  document.getElementById('poly-preview').style.display = 'none';
+
   try {
     const proxyUrl = PROXY + '?url=' + encodeURIComponent(url);
     const res = await fetch(proxyUrl);
     const data = await res.json();
-    const html = data.html || '';
 
-    // Extrair cidade e data do título
-    const titleMatch = html.match(/Highest temperature in ([^<]+?) on ([^<?"]+)/i);
-    const cidade = titleMatch ? titleMatch[1].trim() : '';
-    const dataStr = titleMatch ? titleMatch[2].trim() : '';
+    // A API retorna array de eventos
+    const evento = Array.isArray(data) ? data[0] : data;
+    if (!evento) { setStatus('poly-status', 'Mercado não encontrado. Verifique o link.'); return; }
 
-    // Extrair estação de resolução
-    const stationMatch = html.match(/history\/daily\/[a-z]{2}\/[^/]+\/([A-Z0-9]{4})/i);
+    const titulo = evento.title || '';
+    const descricao = evento.description || '';
+
+    // Extrair cidade do título: "Highest temperature in CIDADE on DATE"
+    const cidadeMatch = titulo.match(/highest temperature in (.+?) on/i);
+    const cidade = cidadeMatch ? cidadeMatch[1].trim() : '';
+
+    // Extrair data do título
+    const dataMatch = titulo.match(/on (.+)$/i);
+    const dataStr = dataMatch ? dataMatch[1].trim() : '';
+
+    // Extrair estação de resolução da descrição
+    const stationMatch = descricao.match(/\/([A-Z]{4})\b/) || descricao.match(/station[^A-Z]*([A-Z]{4})/i);
     const estacao = stationMatch ? stationMatch[1] : '';
 
-    // Extrair faixas e preços — padrão "Buy No X¢" ou "Buy No X"
-    const faixaMatches = [...html.matchAll(/(\d+°C(?:\s+or\s+(?:below|higher))?|[<>]?\s*\d+°C)[^<]*?Buy No\s*([\d.]+)¢/gi)];
-
-    // Método alternativo — buscar padrões de temperatura e preços No
+    // Extrair markets (faixas) com outcomes e preços
+    const markets = evento.markets || [];
     let faixas = [];
 
-    // Tentar extrair via regex mais amplo
-    const noMatches = [...html.matchAll(/Buy No\s*<\/span>\s*([\d.]+)¢/gi)];
-    const tempMatches = [...html.matchAll(/([-\d]+°C(?:\s+or\s+(?:below|higher))?)/gi)];
+    markets.forEach(m => {
+      const outcomes = m.outcomes || '[]';
+      const prices = m.outcomePrices || '[]';
+      let outArr, priceArr;
+      try {
+        outArr = typeof outcomes === 'string' ? JSON.parse(outcomes) : outcomes;
+        priceArr = typeof prices === 'string' ? JSON.parse(prices) : prices;
+      } catch(e) { return; }
 
-    if (noMatches.length > 0 && tempMatches.length > 0) {
-      const temps = [...new Set(tempMatches.map(m => m[1]))];
-      const prices = noMatches.map(m => parseFloat(m[1]) / 100);
+      // Cada market tem 2 outcomes: ["Yes","No"] com preços [yesPrice, noPrice]
+      const yesIdx = outArr.findIndex(o => o.toLowerCase() === 'yes');
+      const noIdx = outArr.findIndex(o => o.toLowerCase() === 'no');
+      const noPrice = noIdx >= 0 && priceArr[noIdx] ? parseFloat(priceArr[noIdx]) : null;
 
-      const minLen = Math.min(temps.length, prices.length);
-      for (let i = 0; i < minLen; i++) {
-        const t = temps[i];
-        const p = prices[i];
-        if (isNaN(p) || p <= 0 || p >= 1) continue;
+      if (!noPrice || noPrice <= 0 || noPrice >= 1) return;
 
-        // Extrair número da temperatura
-        const numMatch = t.match(/([-\d]+)/);
-        if (!numMatch) continue;
-        const tempNum = parseFloat(numMatch[1]);
-        if (isNaN(tempNum)) continue;
+      // Extrair temperatura do nome do market
+      const mTitle = m.groupItemTitle || m.question || '';
+      const tempMatch = mTitle.match(/([-\d]+)\s*°?C/i) ||
+                        mTitle.match(/([-\d]+)\s*degrees/i) ||
+                        mTitle.match(/^([-\d]+)$/);
+      if (!tempMatch) return;
 
-        faixas.push({ temp: tempNum, label: t.includes('or') ? t : '', price: p });
-      }
-    }
+      const temp = parseFloat(tempMatch[1]);
+      if (isNaN(temp)) return;
 
-    // Limpar faixas duplicadas
-    const seen = new Set();
-    faixas = faixas.filter(f => {
-      const key = f.temp + '_' + f.price;
-      if (seen.has(key)) return false;
-      seen.add(key);
-      return true;
+      const label = mTitle.includes('or') ? mTitle.replace(/°C/gi,'°C') : '';
+      faixas.push({ temp, label, price: noPrice });
     });
 
-    if (faixas.length === 0) {
-      setStatus('poly-status', 'Não consegui extrair as faixas automaticamente. Preencha manualmente abaixo.');
-      if (cidade) document.getElementById('cidade').value = cidade;
-      if (estacao) document.getElementById('estacao').value = estacao;
-      return;
-    }
+    // Ordenar por temperatura
+    faixas.sort((a,b) => a.temp - b.temp);
 
     // Preencher campos
     if (cidade) {
@@ -301,24 +295,36 @@ async function fetchPolymarket() {
     }
     if (estacao) document.getElementById('estacao').value = estacao;
 
-    // Tentar extrair data
+    // Tentar converter data para ISO
     if (dataStr) {
-      const dateObj = new Date(dataStr + ' 2026');
-      if (!isNaN(dateObj)) {
-        const iso = dateObj.toISOString().split('T')[0];
-        document.getElementById('a-data').value = iso;
-      }
+      try {
+        const d = new Date(dataStr + ' 2026');
+        if (!isNaN(d)) document.getElementById('a-data').value = d.toISOString().split('T')[0];
+      } catch(e) {}
     }
 
     // Limpar e preencher faixas
     document.getElementById('faixas-container').innerHTML = '';
     fxCount = 0;
-    faixas.forEach(f => addFaixa(f.temp, f.label, f.price.toFixed(2)));
 
-    setStatus('poly-status', `${faixas.length} faixas extraídas · ${cidade} · Estação: ${estacao || 'verificar nas Rules'}`);
+    if (faixas.length > 0) {
+      faixas.forEach(f => addFaixa(f.temp, f.label, f.price.toFixed(2)));
+      setStatus('poly-status', `${faixas.length} faixas extraídas · ${cidade} · ${estacao ? 'Estação: ' + estacao : 'verifique estação nas Rules'}`);
+
+      // Preview das faixas
+      let prev = '<div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:6px;letter-spacing:.1em;text-transform:uppercase">Faixas extraídas</div>';
+      faixas.forEach(f => {
+        const col = f.price >= 0.85 ? '#00ff88' : f.price >= 0.70 ? '#ffaa00' : '#ff4444';
+        prev += `<span class="tag-preview" style="color:${col}">${f.temp}°C · No $${f.price.toFixed(2)}</span>`;
+      });
+      document.getElementById('poly-preview').innerHTML = prev;
+      document.getElementById('poly-preview').style.display = 'block';
+    } else {
+      setStatus('poly-status', `Cidade: ${cidade} · Não consegui extrair preços. Preencha as faixas manualmente.`);
+    }
 
   } catch(e) {
-    setStatus('poly-status', 'Erro ao buscar. Verifique a URL ou preencha manualmente.');
+    setStatus('poly-status', 'Erro ao buscar. Verifique a URL ou preencha manualmente. Erro: ' + e.message);
   }
 }
 
@@ -326,167 +332,158 @@ async function fetchPolymarket() {
 async function fetchModels() {
   const city = document.getElementById('a-cidade').value.trim();
   const dateStr = document.getElementById('a-data').value;
-  if (!city) { setStatus('a-status', 'Digite uma cidade.'); return; }
-  if (!dateStr) { setStatus('a-status', 'Selecione a data.'); return; }
-  setStatus('a-status', 'Buscando coordenadas...', true);
+  if (!city) { setStatus('a-status','Digite uma cidade.'); return; }
+  if (!dateStr) { setStatus('a-status','Selecione a data.'); return; }
+  setStatus('a-status','Buscando coordenadas...', true);
   try {
     const geo = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=pt&format=json`);
     const gd = await geo.json();
-    if (!gd.results?.length) { setStatus('a-status', 'Cidade não encontrada. Tente em inglês.'); return; }
+    if (!gd.results?.length) { setStatus('a-status','Cidade não encontrada.'); return; }
     const loc = gd.results[0];
-    setStatus('a-status', `${loc.name}, ${loc.country} — buscando GFS, ECMWF, ICON, GEM...`, true);
-    const tz = encodeURIComponent(loc.timezone || 'auto');
+    setStatus('a-status',`${loc.name}, ${loc.country} — buscando GFS, ECMWF, ICON, GEM...`, true);
+    const tz = encodeURIComponent(loc.timezone||'auto');
     const lat = loc.latitude, lon = loc.longitude;
     const models = [
-      { name:'GFS',   key:'gfs',   url:`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max&timezone=${tz}&models=gfs_seamless&forecast_days=10` },
-      { name:'ECMWF', key:'ecmwf', url:`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max&timezone=${tz}&models=ecmwf_ifs04&forecast_days=10` },
-      { name:'ICON',  key:'icon',  url:`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max&timezone=${tz}&models=icon_seamless&forecast_days=10` },
-      { name:'GEM',   key:'gem',   url:`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max&timezone=${tz}&models=gem_seamless&forecast_days=10` },
+      {name:'GFS',  key:'gfs',  url:`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max&timezone=${tz}&models=gfs_seamless&forecast_days=10`},
+      {name:'ECMWF',key:'ecmwf',url:`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max&timezone=${tz}&models=ecmwf_ifs04&forecast_days=10`},
+      {name:'ICON', key:'icon', url:`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max&timezone=${tz}&models=icon_seamless&forecast_days=10`},
+      {name:'GEM',  key:'gem',  url:`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=temperature_2m_max&timezone=${tz}&models=gem_seamless&forecast_days=10`},
     ];
     const results = {};
     await Promise.all(models.map(async m => {
       try {
         const r = await fetch(m.url);
         const d = await r.json();
-        const times = d.daily?.time || [];
-        const temps = d.daily?.temperature_2m_max || [];
+        const times = d.daily?.time||[];
+        const temps = d.daily?.temperature_2m_max||[];
         const idx = times.indexOf(dateStr);
-        if (idx >= 0 && temps[idx] != null) results[m.key] = { name: m.name, temp: temps[idx] };
-      } catch(e) {}
+        if (idx>=0 && temps[idx]!=null) results[m.key]={name:m.name,temp:temps[idx]};
+      } catch(e){}
     }));
-    const vals = Object.values(results).map(v => v.temp);
-    if (!vals.length) { setStatus('a-status', 'Sem dados para essa data.'); return; }
-    const mean = vals.reduce((a,b) => a+b, 0) / vals.length;
-    const spread = Math.max(...vals) - Math.min(...vals);
-    autoModelData = { results, mean, spread };
+    const vals = Object.values(results).map(v=>v.temp);
+    if (!vals.length) { setStatus('a-status','Sem dados para essa data.'); return; }
+    const mean = vals.reduce((a,b)=>a+b,0)/vals.length;
+    const spread = Math.max(...vals)-Math.min(...vals);
+    autoModelData = {results,mean,spread};
     if (results.gfs) document.getElementById('m-gfs').value = results.gfs.temp.toFixed(1);
     if (results.ecmwf) document.getElementById('m-ecmwf').value = results.ecmwf.temp.toFixed(1);
     if (results.icon) document.getElementById('m-icon').value = results.icon.temp.toFixed(1);
     document.getElementById('cidade').value = loc.name;
     renderModelBars(results);
-    setStatus('a-status', `${vals.length} modelos · média ${mean.toFixed(1)}°C · spread ${spread.toFixed(1)}°C`);
-  } catch(e) {
-    setStatus('a-status', 'Erro de rede.');
-  }
+    setStatus('a-status',`${vals.length} modelos · média ${mean.toFixed(1)}°C · spread ${spread.toFixed(1)}°C`);
+  } catch(e) { setStatus('a-status','Erro de rede.'); }
 }
 
 function renderModelBars(results) {
-  const vals = Object.values(results).map(v => v.temp);
-  const minT = Math.min(...vals) - 1, maxT = Math.max(...vals) + 1;
+  const vals = Object.values(results).map(v=>v.temp);
+  const minT=Math.min(...vals)-1, maxT=Math.max(...vals)+1;
   const wrap = document.getElementById('model-bars');
-  let html = '';
-  Object.values(results).forEach(m => {
-    const pct = Math.round(((m.temp - minT) / (maxT - minT)) * 100);
-    html += `<div class="model-bar"><span class="model-name">${m.name}</span><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div><span class="model-val">${m.temp.toFixed(1)}°C</span></div>`;
+  let html='';
+  Object.values(results).forEach(m=>{
+    const pct=Math.round(((m.temp-minT)/(maxT-minT))*100);
+    html+=`<div class="model-bar"><span class="model-name">${m.name}</span><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div><span class="model-val">${m.temp.toFixed(1)}°C</span></div>`;
   });
-  const spread = Math.max(...vals) - Math.min(...vals);
-  const ac = spread<=1?'var(--accent)':spread<=2?'var(--warning)':'var(--danger)';
-  const msg = spread<=1?`Alta concordância — spread ${spread.toFixed(1)}°C`:spread<=2?`Concordância média — spread ${spread.toFixed(1)}°C`:`Modelos divergem — spread ${spread.toFixed(1)}°C`;
-  html += `<div class="agree-box" style="background:${ac}20;color:${ac};border:1px solid ${ac}40;font-family:var(--mono);font-size:11px">${msg}</div>`;
-  wrap.innerHTML = html;
-  wrap.style.display = 'block';
+  const spread=Math.max(...vals)-Math.min(...vals);
+  const ac=spread<=1?'var(--accent)':spread<=2?'var(--warning)':'var(--danger)';
+  const msg=spread<=1?`Alta concordância — spread ${spread.toFixed(1)}°C`:spread<=2?`Concordância média — spread ${spread.toFixed(1)}°C`:`Modelos divergem — spread ${spread.toFixed(1)}°C`;
+  html+=`<div class="agree-box" style="background:${ac}20;color:${ac};border:1px solid ${ac}40;font-family:var(--mono);font-size:11px">${msg}</div>`;
+  wrap.innerHTML=html; wrap.style.display='block';
 }
 
 function calcProb(modelData, faixaTemp, dias) {
-  const vals = Object.values(modelData.results).map(v => v.temp);
-  const mean = vals.reduce((a,b) => a+b, 0) / vals.length;
-  const spread = modelData.spread || 0;
-  const base = [0.5,0.8,1.2,1.8,2.5];
-  const sigma = Math.max(0.6, spread*0.6 + base[Math.min(4,dias-1)]);
-  function phi(x) {
-    const t=1/(1+0.2316419*Math.abs(x));
-    const poly=t*(0.319381530+t*(-0.356563782+t*(1.781477937+t*(-1.821255978+t*1.330274429))));
-    const pdf=Math.exp(-0.5*x*x)/Math.sqrt(2*Math.PI);
-    const c=1-pdf*poly;
-    return x>=0?c:1-c;
-  }
+  const vals = Object.values(modelData.results).map(v=>v.temp);
+  const mean = vals.reduce((a,b)=>a+b,0)/vals.length;
+  const spread = modelData.spread||0;
+  const base=[0.5,0.8,1.2,1.8,2.5];
+  const sigma=Math.max(0.6, spread*0.6+base[Math.min(4,dias-1)]);
+  function phi(x){const t=1/(1+0.2316419*Math.abs(x));const poly=t*(0.319381530+t*(-0.356563782+t*(1.781477937+t*(-1.821255978+t*1.330274429))));const pdf=Math.exp(-0.5*x*x)/Math.sqrt(2*Math.PI);const c=1-pdf*poly;return x>=0?c:1-c;}
   return Math.max(0.01,Math.min(0.99,phi((faixaTemp+1-mean)/sigma)-phi((faixaTemp-1-mean)/sigma)));
 }
 
 function kelly(banca, edge, price) {
   if (edge<=0) return 0;
-  const b=(1-price)/price, p=price+edge, q=1-p;
+  const b=(1-price)/price,p=price+edge,q=1-p;
   const k=Math.max(0,(b*p-q)/b);
-  return Math.min(banca*k*0.15, banca*0.05);
+  return Math.min(banca*k*0.15,banca*0.05);
 }
 
 function analisar() {
-  const cidade = document.getElementById('cidade').value || 'Mercado';
-  const gfs = parseFloat(document.getElementById('m-gfs').value);
-  const ecmwf = parseFloat(document.getElementById('m-ecmwf').value);
-  const icon = parseFloat(document.getElementById('m-icon').value);
-  const banca = parseFloat(document.getElementById('banca').value) || 10;
-  const dias = parseInt(document.getElementById('dias').value);
-  const estacao = document.getElementById('estacao').value.trim();
-  const faixas = getFaixas();
-  const vals = [gfs,ecmwf,icon].filter(v => !isNaN(v));
-  if (!vals.length) { alert('Preencha ao menos um modelo ou use a busca automática.'); return; }
-  if (!faixas.length) { alert('Adicione ao menos uma faixa com preço.'); return; }
+  const cidade=document.getElementById('cidade').value||'Mercado';
+  const gfs=parseFloat(document.getElementById('m-gfs').value);
+  const ecmwf=parseFloat(document.getElementById('m-ecmwf').value);
+  const icon=parseFloat(document.getElementById('m-icon').value);
+  const banca=parseFloat(document.getElementById('banca').value)||10;
+  const dias=parseInt(document.getElementById('dias').value);
+  const estacao=document.getElementById('estacao').value.trim();
+  const faixas=getFaixas();
+  const vals=[gfs,ecmwf,icon].filter(v=>!isNaN(v));
+  if (!vals.length){alert('Preencha ao menos um modelo ou use a busca automática.');return;}
+  if (!faixas.length){alert('Adicione ao menos uma faixa com preço.');return;}
 
-  let modelData = autoModelData;
-  if (!modelData) {
-    const results = {};
-    if (!isNaN(gfs)) results.gfs={name:'GFS',temp:gfs};
-    if (!isNaN(ecmwf)) results.ecmwf={name:'ECMWF',temp:ecmwf};
-    if (!isNaN(icon)) results.icon={name:'ICON',temp:icon};
+  let modelData=autoModelData;
+  if (!modelData){
+    const results={};
+    if(!isNaN(gfs)) results.gfs={name:'GFS',temp:gfs};
+    if(!isNaN(ecmwf)) results.ecmwf={name:'ECMWF',temp:ecmwf};
+    if(!isNaN(icon)) results.icon={name:'ICON',temp:icon};
     const mean=vals.reduce((a,b)=>a+b,0)/vals.length;
     const spread=vals.length>1?Math.max(...vals)-Math.min(...vals):0;
     modelData={results,mean,spread};
   }
 
-  const results = faixas.map(f => {
-    const yesProb = calcProb(modelData, f.temp, dias);
-    const noProb = 1 - yesProb;
-    const edge = noProb - f.price;
-    const pos = kelly(banca, edge, f.price);
-    return {...f, yesProb, noProb, edge, pos};
-  }).sort((a,b) => b.edge-a.edge);
+  const results=faixas.map(f=>{
+    const yesProb=calcProb(modelData,f.temp,dias);
+    const noProb=1-yesProb;
+    const edge=noProb-f.price;
+    const pos=kelly(banca,edge,f.price);
+    return{...f,yesProb,noProb,edge,pos};
+  }).sort((a,b)=>b.edge-a.edge);
 
-  const best = results[0];
-  const hasEdge = best && best.edge >= 0.08;
-  const spread = modelData.spread || 0;
-  const nModels = Object.keys(modelData.results).length;
-  const meanTemp = modelData.mean;
+  const best=results[0];
+  const hasEdge=best&&best.edge>=0.08;
+  const spread=modelData.spread||0;
+  const nModels=Object.keys(modelData.results).length;
+  const meanTemp=modelData.mean;
 
-  let h = '';
+  let h='';
 
-  if (hasEdge) {
-    h += `<div class="verdict-box" style="background:#00ff880a;border-color:#00ff8833">
+  if(hasEdge){
+    h+=`<div class="verdict-box" style="background:#00ff880a;border-color:#00ff8833">
       <div class="verdict-title" style="color:var(--accent)">ENTRA</div>
       <div class="verdict-sub" style="color:var(--accent)">No ${best.temp}°C${best.label?' — '+best.label:''} · Edge +${Math.round(best.edge*100)} pts · Apostar $${Math.round(best.pos)} · Limite máx $${(best.price+0.06).toFixed(2)}</div>
     </div>`;
   } else {
-    h += `<div class="verdict-box" style="background:#ff44440a;border-color:#ff444433">
+    h+=`<div class="verdict-box" style="background:#ff44440a;border-color:#ff444433">
       <div class="verdict-title" style="color:var(--danger)">PASSA</div>
       <div class="verdict-sub" style="color:var(--danger)">Nenhuma faixa com edge ≥ 8 pts. Aguarde melhor oportunidade.</div>
     </div>`;
   }
 
-  h += `<div class="metrics">
+  h+=`<div class="metrics">
     <div class="metric"><div class="metric-label">Previsão</div><div class="metric-val" style="color:var(--accent)">${meanTemp.toFixed(1)}°C</div></div>
     <div class="metric"><div class="metric-label">Spread</div><div class="metric-val" style="color:${spread<=1?'var(--accent)':spread<=2?'var(--warning)':'var(--danger)'}">${spread.toFixed(1)}°C</div></div>
     <div class="metric"><div class="metric-label">Melhor edge</div><div class="metric-val" style="color:${best.edge>=0.2?'var(--accent)':best.edge>=0.08?'var(--warning)':'var(--danger)'}">${Math.round(best.edge*100)} pts</div></div>
     <div class="metric"><div class="metric-label">Apostar</div><div class="metric-val">$${Math.round(best.pos>0?best.pos:0)}</div></div>
   </div>`;
 
-  if (nModels > 0) {
-    const vs = Object.values(modelData.results);
-    const minT=Math.min(...vs.map(v=>v.temp))-1, maxT=Math.max(...vs.map(v=>v.temp))+1;
-    h += `<div class="result-card"><div class="result-card-title">Modelos meteorológicos</div>`;
-    vs.forEach(m => {
+  if(nModels>0){
+    const vs=Object.values(modelData.results);
+    const minT=Math.min(...vs.map(v=>v.temp))-1,maxT=Math.max(...vs.map(v=>v.temp))+1;
+    h+=`<div class="result-card"><div class="result-card-title">Modelos meteorológicos</div>`;
+    vs.forEach(m=>{
       const pct=Math.round(((m.temp-minT)/(maxT-minT))*100);
-      h += `<div class="model-bar"><span class="model-name">${m.name}</span><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div><span class="model-val">${m.temp.toFixed(1)}°C</span></div>`;
+      h+=`<div class="model-bar"><span class="model-name">${m.name}</span><div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div><span class="model-val">${m.temp.toFixed(1)}°C</span></div>`;
     });
-    h += `</div>`;
+    h+=`</div>`;
   }
 
-  h += `<div class="result-card"><div class="result-card-title">Edge por faixa — modo No</div>`;
-  results.forEach((r,i) => {
+  h+=`<div class="result-card"><div class="result-card-title">Edge por faixa — modo No</div>`;
+  results.forEach((r,i)=>{
     const ep=Math.round(r.edge*100);
     const col=r.edge>=0.2?'var(--accent)':r.edge>=0.08?'var(--warning)':'var(--danger)';
     const cls=r.edge>=0.08?'good':'bad';
     const limite=(r.price+0.06).toFixed(2);
-    h += `<div class="faixa-result ${cls}">
+    h+=`<div class="faixa-result ${cls}">
       <div class="fr-top">
         <span class="fr-name">No ${r.temp}°C${r.label?' — '+r.label:''}${i===0&&hasEdge?'<span class="badge badge-best">MELHOR</span>':r.edge<0.08?'<span class="badge badge-pass">PASSA</span>':''}</span>
         <span class="fr-edge" style="color:${col}">${ep>0?'+':''}${ep} pts</span>
@@ -500,27 +497,27 @@ function analisar() {
       </div>
     </div>`;
   });
-  h += `</div>`;
+  h+=`</div>`;
 
-  const checks = [
-    ['Rules verificadas — fonte de resolução confirmada', !!estacao, estacao?`Estação: ${estacao}`:'Informe a estação acima'],
-    [`${nModels} modelo${nModels!==1?'s':''} consultado${nModels!==1?'s':''}`, nModels>=2],
-    [`Spread ${spread.toFixed(1)}°C ${spread<=1?'— alta confiança':spread<=2?'— confiança média':'— modelos divergem'}`, spread<=2],
-    ['Edge da melhor faixa ≥ 8 pts', best.edge>=0.08],
-    [`Posição $${Math.round(best.pos)} dentro do limite de 5% ($${Math.round(banca*0.05)})`, best.pos<=banca*0.05+0.01],
-    [`${dias} dia${dias!==1?'s':''} até o evento ${dias<=2?'— alta precisão':dias<=3?'— precisão média':'— precisão baixa'}`, dias<=3],
+  const checks=[
+    ['Rules verificadas — fonte de resolução confirmada',!!estacao,estacao?`Estação: ${estacao}`:'Informe a estação acima'],
+    [`${nModels} modelo${nModels!==1?'s':''} consultado${nModels!==1?'s':''}`,nModels>=2],
+    [`Spread ${spread.toFixed(1)}°C ${spread<=1?'— alta confiança':spread<=2?'— confiança média':'— modelos divergem'}`,spread<=2],
+    ['Edge da melhor faixa ≥ 8 pts',best.edge>=0.08],
+    [`Posição $${Math.round(best.pos)} dentro do limite de 5% ($${Math.round(banca*0.05)})`,best.pos<=banca*0.05+0.01],
+    [`${dias} dia${dias!==1?'s':''} até o evento ${dias<=2?'— alta precisão':dias<=3?'— precisão média':'— precisão baixa'}`,dias<=3],
   ];
 
-  h += `<div class="result-card"><div class="result-card-title">Checklist</div>`;
-  checks.forEach(([label,ok,sub]) => {
-    h += `<div class="risk-row">
+  h+=`<div class="result-card"><div class="result-card-title">Checklist</div>`;
+  checks.forEach(([label,ok,sub])=>{
+    h+=`<div class="risk-row">
       <div class="risk-dot" style="background:${ok?'var(--accent)':'var(--danger)'}"></div>
       <div><div style="color:${ok?'var(--text)':'var(--danger)'}">${label}</div>${sub?`<div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:2px">${sub}</div>`:''}</div>
     </div>`;
   });
-  h += `</div>`;
+  h+=`</div>`;
 
-  document.getElementById('resultado').innerHTML = h;
+  document.getElementById('resultado').innerHTML=h;
   document.getElementById('resultado').scrollIntoView({behavior:'smooth',block:'start'});
 }
 </script>
